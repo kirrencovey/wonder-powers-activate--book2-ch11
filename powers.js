@@ -11,24 +11,24 @@ const flightText = document.querySelector("#flight");
 const mindreadingText = document.querySelector("#mindreading");
 const xrayText = document.querySelector("#xray")
 
-const flightHandlerFunction = () => {
-    flightText.classList.toggle("disabled");
-    flightText.classList.toggle("enabled");
-}
+// const flightHandlerFunction = () => {
+//     flightText.classList.toggle("disabled");
+//     flightText.classList.toggle("enabled");
+// }
 
-const mindreadingHandlerFunction = () => {
-    mindreadingText.classList.toggle("disabled");
-    mindreadingText.classList.toggle("enabled");
-}
+// const mindreadingHandlerFunction = () => {
+//     mindreadingText.classList.toggle("disabled");
+//     mindreadingText.classList.toggle("enabled");
+// }
 
-const xrayHandlerFunction = () => {
-    xrayText.classList.toggle("disabled");
-    xrayText.classList.toggle("enabled");
-}
+// const xrayHandlerFunction = () => {
+//     xrayText.classList.toggle("disabled");
+//     xrayText.classList.toggle("enabled");
+// }
 
-flightButton.addEventListener("click", flightHandlerFunction);
-mindreadingButton.addEventListener("click", mindreadingHandlerFunction);
-xrayButton.addEventListener("click", xrayHandlerFunction);
+// flightButton.addEventListener("click", flightHandlerFunction);
+// mindreadingButton.addEventListener("click", mindreadingHandlerFunction);
+// xrayButton.addEventListener("click", xrayHandlerFunction);
 
 
 
@@ -56,3 +56,29 @@ const deactivateAll = () => {
 
 activateAllButton.addEventListener("click", activateAll);
 deactivateAllButton.addEventListener("click", deactivateAll);
+
+
+
+
+// Challenge: One Function to Rule Them All
+
+// The learning objective of this challenge to write a function handler to be used for multiple events, and uses information in the event argument to perform common logic.
+
+// You may notice that your code to enable individual powers (not all at once) is very similar. To keep your code DRY, make one function that will handle activating a power depending on which button is clicked. (Hint: one way to get started is to use event.target.id.split("-") in your function)
+
+
+const bigFancyFunction = () => {
+    function allPowerManipulator (yourSection) {
+        yourSection.classList.toggle("disabled");
+        yourSection.classList.toggle("enabled");
+    }
+
+    let powerID = event.target.id.split("-")[1];
+    let correctButton = document.getElementById(powerID);
+    allPowerManipulator(correctButton);
+}
+
+
+flightButton.addEventListener("click", bigFancyFunction);
+mindreadingButton.addEventListener("click", bigFancyFunction);
+xrayButton.addEventListener("click", bigFancyFunction);
