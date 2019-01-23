@@ -67,18 +67,28 @@ deactivateAllButton.addEventListener("click", deactivateAll);
 // You may notice that your code to enable individual powers (not all at once) is very similar. To keep your code DRY, make one function that will handle activating a power depending on which button is clicked. (Hint: one way to get started is to use event.target.id.split("-") in your function)
 
 
-const bigFancyFunction = () => {
-    function allPowerManipulator (yourSection) {
-        yourSection.classList.toggle("disabled");
-        yourSection.classList.toggle("enabled");
-    }
 
+const allPowerManipulator = (yourSection) => {
+    yourSection.classList.toggle("disabled");
+    yourSection.classList.toggle("enabled");
+}
+
+const handleItemClick = () => {
     let powerID = event.target.id.split("-")[1];
     let correctButton = document.getElementById(powerID);
     allPowerManipulator(correctButton);
 }
 
 
-flightButton.addEventListener("click", bigFancyFunction);
-mindreadingButton.addEventListener("click", bigFancyFunction);
-xrayButton.addEventListener("click", bigFancyFunction);
+// flightButton.addEventListener("click", handleItemClick);
+// mindreadingButton.addEventListener("click", handleItemClick);
+// xrayButton.addEventListener("click", handleItemClick);
+
+
+
+// Use event bubbling to use a single event listener for all 3 buttons
+
+const powerButtons = document.getElementById("powerButtons");
+
+
+powerButtons.addEventListener("click", handleItemClick);
